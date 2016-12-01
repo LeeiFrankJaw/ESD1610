@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../include/prnt.h"
+#include "prnt.h"
 
 int printDiamond(int n)
 {

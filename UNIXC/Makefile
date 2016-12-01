@@ -1,25 +1,33 @@
 CC = gcc
+IFLAGS = -Iinclude
+LFLAGS = -Llib
+CFLAGS = -s $(IFLAGS) $(LFLAGS)
+WLFLAGS = -Wl,-rpath,$(PWD)/bin
+ILIB = ar r lib/libuc.a lib/$@
 
 libs: prnt.o libprnt.so endian.o
 
 prnt.o: src/prnt.c
-	$(CC) -c -o lib/$@ $<
+	$(CC) -c -o lib/$@ $< $(CFLAGS)
+	$(ILIB)
 
 libprnt.so: src/prnt.c
-	$(CC) -shared -fpic -s -o lib/$@ $<
-	ln -f lib/$@ bin/$@
+	$(CC) -shared -fpic -o bin/$@ $< $(CFLAGS)
 
-endian.o: src/endian.c
-	$(CC) -c -o lib/$@ $<
+myendian.o: src/myendian.c
+	$(CC) -c -o lib/$@ $< $(CFLAGS)
+	$(ILIB)
 
 doPrntStatic: prnt.o
-	$(CC) -s -o bin/$@ src/doPrnt.c lib/prnt.o
+	$(CC) -o bin/$@ src/doPrnt.c $(CFLAGS) -luc
 
 doPrntShared: libprnt.so
-	$(CC) -s -o bin/$@ src/doPrnt.c lib/libprnt.so
+	$(CC) -o bin/$@ src/doPrnt.c bin/$< $(CFLAGS) $(WLFLAGS)
 
-checkEndian: endian.o
-	$(CC) -s -o bin/$@ src/$@.c lib/$<
+checkEndian: myendian.o
+	$(CC) -o bin/$@ src/$@.c $(CFLAGS) -luc
+
+winstall: doPrntStatic doPrntShared checkEndian
 
 install: doPrntStatic doPrntShared checkEndian
 

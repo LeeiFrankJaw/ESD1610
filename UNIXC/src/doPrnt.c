@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "../include/prnt.h"
+#include "prnt.h"
 
 int main(int argc, char *argv[])
 {

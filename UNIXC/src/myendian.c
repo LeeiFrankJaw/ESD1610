@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "../include/endian.h"
+#include "myendian.h"
 
 int getEndian(void)
 {
     short n = 0x00ff;
-    unsigned char *p = (char *) &n;
+    char *p = (char *) &n;
     return *p;
 }
