@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "myendian.h"
+#include "hw.h"
 
 int getEndian(void)
 {
