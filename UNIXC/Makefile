@@ -30,7 +30,10 @@ checkEndian: hw.o
 checkStrcpy: hw.o
 	$(EXE)
 
-install: doPrntStatic doPrntShared checkEndian checkStrcpy
+checkStack: hw.o
+	$(EXE)
+
+install: doPrntStatic doPrntShared checkEndian checkStrcpy checkStack
 
 .PHONY: clean
 
