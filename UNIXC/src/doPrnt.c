@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "prnt.h"
 
 int main(int argc, char *argv[])
