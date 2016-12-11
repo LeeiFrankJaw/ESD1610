@@ -1,4 +1,5 @@
-#include "hw.h"
+#include "hw_hdr.h"
+#include "mystack.h"
 
 int main(int argc, char *argv[])
 {

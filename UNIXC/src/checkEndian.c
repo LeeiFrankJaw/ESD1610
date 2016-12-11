@@ -1,4 +1,5 @@
-#include "hw.h"
+#include "hw_hdr.h"
+#include "myendian.h"
 
 int main()
 {

@@ -1,6 +1,7 @@
-#ifndef HW_H
-#define HW_H
+#ifndef HW_HDR_H
+#define HW_HDR_H
 
+#include <sys/types.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -11,14 +12,5 @@
 #define max(m, n) ((m) < (n) ? (n) : (m))
 
 typedef enum {FALSE, TRUE} Bool;
-
-int getEndian(void);
-char *myStrcpy(char *dest, const char *src);
-int myStrlen(const char *s);
-void initStack(void);
-void checkStackInit(void);
-void push(int);
-int pop(void);
-void clear(void);
 
 #endif

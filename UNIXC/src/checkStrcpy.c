@@ -1,4 +1,5 @@
-#include "hw.h"
+#include "hw_hdr.h"
+#include "mystr.h"
 
 #define STR "This a test string."
 
