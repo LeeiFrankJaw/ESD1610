@@ -1,9 +1,10 @@
+#include "hw_hdr.h"
 #include "myls.h"
 
-static inline char *setFileType(mode_t, char []) INLINE;
-static inline char *setFilePerms(mode_t, char []) INLINE;
+static inline char *getFileType(mode_t, char []) INLINE;
+static inline char *getFilePerms(mode_t, char []) INLINE;
 
-static inline char *setFileType(mode_t st_mode, char modeStr[])
+static inline char *getFileType(mode_t st_mode, char modeStr[])
 {
     switch (st_mode & S_IFMT) {
 	case S_IFREG:
@@ -34,7 +35,7 @@ static inline char *setFileType(mode_t st_mode, char modeStr[])
     return modeStr;
 }
 
-static inline char *setFilePerms(mode_t st_mode, char modeStr[])
+static inline char *getFilePerms(mode_t st_mode, char modeStr[])
 {
     int i;
     for (i = 0; i < 9; i++)
@@ -54,9 +55,13 @@ static inline char *setFilePerms(mode_t st_mode, char modeStr[])
     return modeStr;
 }
 
-char *setModeStr(mode_t st_mode, char modeStr[])
+char *getModeStr(mode_t st_mode, char modeStr[])
 {
-    setFileType(st_mode, modeStr);
-    setFilePerms(st_mode, modeStr);
-    return modeStr;
+    return getFilePerms(st_mode, getFileType(st_mode, modeStr));
+}
+
+char *getTimeStr(time_t st_time, char timeStr[])
+{
+    strftime(timeStr, MAX_TSTR, "%b %d %R", localtime(&st_time));
+    return timeStr;
 }

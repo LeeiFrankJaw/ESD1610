@@ -17,17 +17,17 @@ int main(int argc, char *argv[])
 	exit(EXIT_FAILURE);
     }
 
-    char outStr[MAX_OSTR];
-    char modeStr[11] = "----------";
+    char modeStr[] = "----------";
+    char timeStr[MAX_TSTR];
 
-    setModeStr(sb.st_mode, modeStr);
-
-    sprintf(outStr, "%s %ld %ld %s",
-	    modeStr,
-	    (long) sb.st_nlink,
-	    (long) sb.st_size,
-	    argv[1]);
-    puts(outStr);
+    printf("%s %ld %s %s %ld %s %s\n",
+	   getModeStr(sb.st_mode, modeStr),
+	   (long) sb.st_nlink,
+	   getpwuid(sb.st_uid)->pw_name,
+	   getgrgid(sb.st_gid)->gr_name,
+	   (long) sb.st_size,
+	   getTimeStr(sb.st_mtime, timeStr),
+	   argv[1]);
 
     return 0;
 }
