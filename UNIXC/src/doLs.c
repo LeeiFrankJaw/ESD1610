@@ -3,8 +3,10 @@
 
 int main(int argc, char *argv[])
 {
+    char *exeName = strrchr(argv[0], '/') + 1;
+    
     if (argc <= 1) {
-	puts("Usage: myls filename");
+	printf("Usage: %s filename", exeName);
 	exit(EXIT_SUCCESS);
     }
 
@@ -12,7 +14,7 @@ int main(int argc, char *argv[])
     struct stat sb;
 
     if (lstat(argv[1], &sb) == -1) {
-	sprintf(errStr, "myls: cannot access '%s'", argv[1]);
+	sprintf(errStr, "%s: cannot access '%s'", exeName, argv[1]);
 	perror(errStr);
 	exit(EXIT_FAILURE);
     }

@@ -75,6 +75,8 @@ testStack:
 	@echo
 
 testLs:
+	bin/doLs
+	@echo
 	bin/doLs Makefile && ls -l Makefile
 	@echo
 	! bin/doLs Makef && ! ls -l Makef
