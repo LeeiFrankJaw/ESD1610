@@ -1,4 +1,5 @@
 #include "hw_hdr.hpp"
+#include "mystring.hpp"
 
 int main(int argc, char *argv[])
 {

@@ -7,12 +7,12 @@ ILIB = ar r lib/libstdcpp.a lib/$@
 OBJ = $(CC) -c -o lib/$@ $< $(CFLAGS); $(ILIB)
 EXE = $(CC) -o bin/$@ src/$@.cpp $(CFLAGS) -lstdcpp
 
-all:
+all: countLetter
 
-countLetterAux.o: src/countLetterAux.cpp
+mystring.o: src/mystring.cpp
 	$(OBJ)
 
-countLetter: countLetterAux.o
+countLetter: mystring.o
 	$(EXE)
 
 .PHONY: clean tests
@@ -20,4 +20,8 @@ countLetter: countLetterAux.o
 clean:
 	rm -fv lib/* bin/*
 
-tests:
+tests: testCountLetter
+
+testCountLetter:
+	test `echo aii233ii | bin/countLetter` -eq 4
+	test `bin/countLetter abii1ei` -eq 3
