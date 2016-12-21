@@ -10,7 +10,10 @@ int countLetter(const string &str, char ch)
     return sum;
 }
 
-void myswap(const char *s1, const char *s2)
+void swapCharArr(const char *&s1, const char *&s2)
 {
-    
+    const char *p;
+    p = s1;
+    s1 = s2;
+    s2 = p;
 }
