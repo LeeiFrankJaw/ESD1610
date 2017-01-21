@@ -9,6 +9,9 @@ EXE = $(CC) -o bin/$@ src/$@.cpp $(CFLAGS) -lstdcpp
 
 all: countLetter swapCharArr
 
+tmp: tmp.cpp
+	$(CC) $< $(CFLAGS) -lstdcpp -fno-elide-constructors
+
 mystring.o: src/mystring.cpp
 	$(OBJ)
 
